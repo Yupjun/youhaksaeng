@@ -3,7 +3,7 @@ class MapsController < ApplicationController
     @facilities = Facility.all
     @map = Map.new
     @select = params[:facility_id]
-    @search = Search.search(params[:search])
+    @building = Building.search(params[:search])
   end
   
   def new
