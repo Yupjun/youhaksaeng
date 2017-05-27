@@ -41,24 +41,34 @@ end
 
 puts "Inserting building data.."
 [
-    ["Choose the facility you want."],
-    ["ATM(Kookmin Bank)"],
-    ["ATM(Shinhan Bank)"],
-    ["ATM(Woori Bank)"],
-    ["Cafe"],
-    ["Cafeteria"],
-    ["Convenience Store"],
-    ["Copy Room"],
-    ["Girl's Lounge"],
-    ["Lost & Found"],
-    ["Notebook Rental"],
-    ["PC Room"],
-    ["Printer(Black & White)"],
-    ["Printer(Color)"],
-    ["Reading Room"],
-    ["Scanner"]
+    ["Main Gate"],
+    ["Yurim Hoegwan"],
+    ["Meongnyundang"],
+    ["Daesungjeon"],
+    ["Bicheondang"],
+    ["Main Gate"],
+    ["International Hall"],
+    ["600th Anniversary Hall"],
+    ["Central Library"],
+    ["Student Center"],
+    ["Faculty Hall"],
+    ["Dasan Hall of Economics"],
+    ["Toegye Hall of Humanities"],
+    ["Hoam Hall"],
+    ["Geumjandi Square"],
+    ["Suseon Hall"],
+    ["Suseon Hall Annex"],
+    ["Yanghyeongwan"],
+    ["International House"],
+    ["Law School"],
+    ["Large Playground"],
+    ["Basketball Court"],
+    ["Oacknyujeong"],
+    ["Kingo House"],
+    ["West Gate"],
+    ["East Gate"]
 ].each do |x|
-    Facility.create(name: x[0])     
+    Building.create(name: x[0])     
 end
 
 puts "Insertion completed"

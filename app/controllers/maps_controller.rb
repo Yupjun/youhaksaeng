@@ -3,7 +3,9 @@ class MapsController < ApplicationController
     @facilities = Facility.all
     @map = Map.new
     @select = params[:facility_id]
-    # @building = Building.search(params[:search])
+    @building = Building.search(params[:building_name]) 
+    # params[:building_name]
+    
   end
   
   def new
@@ -14,14 +16,6 @@ class MapsController < ApplicationController
     map = Map.new(map_params)
     map[:facility_id] = facility(params[:id])
     map.save
-    # @select = params[:facility_id]
-
-    # redirect_to new_map_path
-    # if facility_id == 1
-    #   redirect_to maps_path
-    # else
-    #   redirect_to new_map_path
-    # end
   end
   
   def show

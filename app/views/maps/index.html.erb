@@ -31,18 +31,27 @@
 
 
 <div id="contents">
-	<div class="select_form">
-        <%= form_tag maps_index_url, :method => 'get' do %>
-    		<%= select_tag :facility_id, options_from_collection_for_select(@facilities, "id", "name", :selected => params[:facility_id]) %>
-    		<%= submit_tag 'Search', :name => nil %>
-		<% end %>
+	<div class="forms">
+		<div class="select_form">
+        	<%= form_tag maps_index_url, :method => 'get' do %>
+    			<%= select_tag :facility_id, options_from_collection_for_select(@facilities, "id", "name", :selected => params[:facility_id]) %>
+    			<%= submit_tag 'Search', :name => nil %>
+			<% end %>
+    	</div>
+		<div class="search_form">
+        	<%= form_tag maps_index_url, :method => 'get' do %>
+            	<%= text_field_tag :building_name, params[:building_name] %>
+        	   	<%= submit_tag "Search", :name => nil %>
+        	<% end %>
+    	</div>
     </div>
-	<div class="search_form">
-        <%= form_tag maps_index_url, :method => 'get' do %>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Search", :name => nil %>
-        <% end %>
-    </div>
+    
+    <% if @building.nil? %>
+    	<p>NOTHING SEARCHED</p>
+    <% else %>
+    	<%= @building %>
+    <% end %>
+    
     
     <div style = "background:url('<%= image_path 'skku_map.jpg' %>') no-repeat 0 0" >
   		<% if @select.nil? || @select == '1' %>

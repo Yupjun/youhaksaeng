@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'country_select'
 # for develop
 gem 'cancancan', '~> 2.0'
 gem 'rolify', '~> 5.1'
