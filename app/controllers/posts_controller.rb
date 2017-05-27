@@ -4,21 +4,23 @@ class PostsController < ApplicationController
   
   def index
     # @posts = Post.search(params[:search])
-    # @posts = Post.all
-     @@meta = params[:search]
-     if params[:search] == "title"
-       @posts = Post.where("title like ?", "%#{params[:post]}%")
-     elsif params[:search] == "body"
-       @posts = Post.where("body like ?", "%#{params[:post]}%")
-     elsif params[:search] == "campus"
-       @posts = Post.where("campus like ?", "%#{params[:post]}%")
-     elsif params[:search] == "nationality"
-       @posts = Post.where("nationality like ?", "%#{params[:post]}%")
-     elsif
-       @posts = Post.where("nickname like ?", "%#{params[:post]}%")
-     else
-       @posts = Post.all
-     end
+    @posts = Post.all
+    # @@meta = params[:search]
+    # if params[:search] == "title"
+    #   @posts = Post.where("title like ?", "%#{params[:post]}%")
+    # elsif params[:search] == "body"
+    #   @posts = Post.where("body like ?", "%#{params[:post]}%")
+    # elsif params[:search] == "campus"
+    #   @posts = Post.where("campus like ?", "%#{params[:post]}%")
+    # elsif params[:search] == "nationality"
+    #   @posts = Post.where("nationality like ?", "%#{params[:post]}%")
+    # elsif
+    #   @posts = Post.where("nickname like ?", "%#{params[:post]}%")
+    # else
+    #   @posts = Post.all
+    # end
+    
+    
   end
 
   def create
@@ -55,6 +57,10 @@ class PostsController < ApplicationController
     @post.destroy
     
     redirect_to posts_url
+  end
+  
+  def search_index
+    @posts = Post.search(params[:search], params[:category])
   end
 
   private
