@@ -1,0 +1,12 @@
+<h1>회원가입</h1>
+<%= form_for @user do |f| %>
+    이메일 : <%= f.email_field :email %><br>
+    비밀번호 : <%= f.password_field :password %><br>
+    비밀번호 재확인 : <%= f.password_field :password_confirmation %><br>
+    별명 : <%= f.text_field :nickname %><br>
+    <!--소속 캠퍼스 : < %= f.text_field :campus %><br> 아래와 같은 라디오버튼은 어떨까요?-->
+    소속 캠퍼스 : Humanities and Social Sciences Campus (Seoul) <%= f.radio_button :campus, "0", :checked => true %> <br>
+                  Natural Sciences Campus (Suwon) <%= f.radio_button :campus, "1" %><br>
+    출신 국가 : <%= f.text_field :nationality %><br>
+    <%= f.submit '회원가입' %>
+<% end %>

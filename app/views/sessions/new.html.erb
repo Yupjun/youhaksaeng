@@ -1,0 +1,7 @@
+<h1>로그인</h1>
+<%= flash[:alert] %>
+<%= form_tag sessions_path do %>
+    이메일 : <%= text_field_tag :email, nil , :placeholder => "이메일이나 별명을 적어주세요" %><br>
+    비밀번호 : <%= password_field_tag :password %><br>
+    <%= submit_tag '로그인' %>
+<% end %>

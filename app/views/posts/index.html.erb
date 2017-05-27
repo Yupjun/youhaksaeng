@@ -1,0 +1,45 @@
+
+<!--< %= link_to '검색', searches_path %> 아래는 포스트 내 검색 시험용--> 
+<%= link_to '검색', "../posts/search_index" %>
+    <!--<p>-->
+    <!--    <%= form_tag posts_path, :method => 'get' do %>-->
+    <!--    <%= select_tag(:search, options_for_select([['제목', 'title'], ['내용','content'],['별명','nickname'],['소속 캠퍼스','campus'],['출신 국가','nationality']],5)) %>-->
+    <!--    <%= text_field_tag :search, params[:search] %>-->
+    <!--    <%= submit_tag "검색", :name => nil %>-->
+    <!--</p>-->
+<% end %>
+<!--<%= form_tag search_index_posts_path, method: :get do %>-->
+<!--    <%= select_tag(:category, options_for_select([['제목', "title"], ['내용', "body"],['별명', "nickname"],['카테고리',"category"]])) %>-->
+<!--    <%= text_field_tag :search  %>-->
+<!--    <%= submit_tag "검색", :name => nil %> -->
+<!--    :name => nil 은 대체 뭘까요?-->
+<!--<% end %>-->
+<!--<br>-->
+
+<!--<% if @posts != nil %>-->
+<!--  <% @posts.each do |r| %>-->
+<!--    <%= r.title %><br>-->
+<!--    <%= r.body %><br>-->
+<!--  <% end %>-->
+<!--<% else %>-->
+<!--    No Data-->
+
+<!--<% end %>-->
+
+<%= link_to '목록', posts_path %>
+
+
+
+<br>
+<% @posts.each do |post| %>
+    <a href='<%= post_path(post) %>'><%= post.title %></a> | <%= post.user.nickname %> | <%= post.category.name %>
+    
+    <!--<% if can? :update, post %>-->
+    <!--    <%= link_to '수정', edit_post_path(post) %>-->
+    <!--<% end %>-->
+    <!--<% if can? :delete, post %>-->
+    <!--    <%= link_to '삭제', post, method: :delete, data: {confirm: '정말 삭제하시겠습니까?' } %>-->
+    <!--<% end %>-->
+    <br>
+<% end %>
+<%= link_to '글쓰기', new_post_path %>

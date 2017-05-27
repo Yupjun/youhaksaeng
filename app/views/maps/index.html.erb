@@ -1,0 +1,641 @@
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
+
+
+<div id="contents">
+	<div class="select_form">
+        <%= form_tag maps_index_url, :method => 'get' do %>
+    		<%= select_tag :facility_id, options_from_collection_for_select(@facilities, "id", "name", :selected => params[:facility_id]) %>
+    		<%= submit_tag 'Search', :name => nil %>
+		<% end %>
+    </div>
+	<div class="search_form">
+        <%= form_tag maps_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+    </div>
+    
+    <div style = "background:url('<%= image_path 'skku_map.jpg' %>') no-repeat 0 0" >
+  			<% if @select == '1' %>
+  				<img src=<%= image_path 'map1.png' %> alt="맵지도" width="967" height="447" usemap="#Map" />
+  				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+  			<% elsif @select == '2' %>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '3' %>
+				<p>신한은행</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '4' %>
+				<p>우리은행</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '5' %>
+				<p>카페</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '6' %>
+				<p>식당</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '7' %>
+				<p>편의점</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '8' %>
+				<p>복사실</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '9' %>
+				<p>여자휴게실</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '10' %>
+				<p>분실물</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '11' %>
+				<p>노트북</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '12' %>
+				<p>피씨룸</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '13' %>
+				<p>흑백인쇄</p>
+				<img src=<%= image_path 'printer4.png' %> alt="프린터" width="967" height="447", usemap="#Map" />
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '14' %>
+				<p>칼라인쇄</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '15' %>
+				<p>독서실</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% elsif @select == '16' %>
+				<p>스캐너</p>
+				<map name="Map" id="Map">
+		  		<area href="#nth1" data-bLocationId="1" alt="정문" coords="916,325,935,369" shape="rect">
+				<area href="#nth2" data-bLocationId="2" alt="유림회관" coords="846,339,847,326,870,318,900,339,901,350,882,356,847,340" shape="poly">
+				<area href="#nth3" data-bLocationId="3" alt="명륜당" coords="734,287,762,318" shape="rect">
+				<area href="#nth4" data-bLocationId="4" alt="대성전" coords="790,327,812,357" shape="rect">
+				<area href="#nth5" data-bLocationId="5" alt="비천당" coords="621,275,665,312" shape="rect">
+				<area href="#nth6" data-bLocationId="6" alt="국제관(9)" coords="696,294,696,291,727,283,726,272,711,262,707,247,696,235,685,232,679,229,649,240,650,258,654,270,697,290" shape="poly">
+				<% if @select == '13' %>
+					<area href="#nth7" data-bLocationId="12" alt="600주년기념관(1)" coords="599,271,647,259,645,221,578,186,563,194,554,201,538,211,544,216,543,248,599,273" shape="poly">
+				<% end %>
+				<area href="#nth8" data-bLocationId="16" alt="중앙학술정보관(도서관)(7)" coords="523,191,568,178,561,166,566,161,564,130,537,113,482,134,481,153,496,160,497,167,511,180,520,190" shape="poly">
+				<area href="#nth9" data-bLocationId="17" alt="학생회관(8)" coords="463,268,450,265,450,256,485,237,499,249,499,258,470,271,465,269" shape="poly">
+				<area href="#nth10" data-bLocationId="14" alt="교수회관(4)" coords="349,117,347,108,366,103,423,127,421,150,408,156,386,152,385,137,351,117" shape="poly">
+				<area href="#nth11" data-bLocationId="21" alt="다산경제관(32)" coords="269,96,286,85,301,97,308,97,325,104,307,121,304,135,297,138,296,120,281,110,270,111,269,97" shape="poly">
+				<area href="#nth12" data-bLocationId="20" alt="퇴계인문관(31)" coords="234,147,236,131,255,117,244,115,248,113,246,89,232,79,196,95,190,105,189,128,235,147" shape="poly">
+				<area href="#nth13" data-bLocationId="15" alt="호암관(50)" coords="232,182,249,189,260,186,294,202,329,188,325,168,294,149,291,119,281,110,269,111,267,117,238,129,233,180" shape="poly">
+				<% if @select == '13' %>
+					<div class="tooltip">
+						<area href="#nth14" data-bLocationId="22" alt="경영관(33)" coords="330,182,385,161,382,140,367,126,326,109,305,119,304,138,305,144,320,148,313,152,330,182" shape="poly">
+						<span class="tooltiptext">first floor<br>third floor</span>
+					</div>
+				<% end %>
+				<area href="#nth15" data-bLocationId="7" alt="금잔디광장" coords="421,237,469,212,403,172,355,193,419,236" shape="poly">
+				<area href="#nth16" data-bLocationId="23" alt="수선관(61)" coords="212,221,207,150,193,151,185,153,161,160,156,156,135,162,130,216,160,219,167,229,210,221" shape="poly">
+				<area href="#nth17" data-bLocationId="24" alt="수선관별관(62)" coords="155,154,156,137,174,134,186,145,188,150,166,158,158,154" shape="poly">
+				<area href="#nth18" data-bLocationId="18" alt="양현관(17)" coords="402,87,405,90,424,65,394,46,356,62,373,78" shape="poly">
+				<area href="#nth19" data-bLocationId="19" alt="인터내셔날하우스(international house)(16)" coords="491,342,552,355,563,355,576,362,595,356,610,351,606,334,569,315,554,319,508,306,495,316,491,343" shape="poly">
+				<area href="#nth20" data-bLocationId="13" alt="법학관(2)" coords="161,288,204,282,157,216,133,221,114,263,116,282,162,289" shape="poly">
+				<area href="#nth21" data-bLocationId="8" alt="대운동장" coords="200,273,321,252,295,219,179,240,202,272,202,273" shape="poly">
+				<area href="#nth22" data-bLocationId="9" alt="농구코트" coords="326,250,340,245,318,216,299,219,324,250" shape="poly">
+				<area href="#nth23" data-bLocationId="10" alt="옥류정" coords="80,195,20" shape="circle">
+				<area href="#nth24" data-bLocationId="11040" alt="킹고하우스" coords="633,206,648,213,672,202,671,187,644,162,635,165,629,176,629,185,631,203" shape="poly">
+				<area href="#nth25" data-bLocationId="11" alt="후문" coords="43,137,72,159" shape="rect">
+				<area href="#nth26" data-bLocationId="5109" alt="동문" coords="460,110,479,149" shape="rect">
+			</map>
+			<% end %>
+	  		
+	  		
+			
+	</div>
+	
+</div>

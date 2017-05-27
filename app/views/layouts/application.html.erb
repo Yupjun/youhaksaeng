@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="#home">community</a>
+    <a href="#news">map</a>
+    <a href="../notices/index">notice</a>
+    <a href="#about">My profile</a>
+  </div>
+
+
+
+  <% if current_user %>
+    <%= current_user.nickname %>님 | <%= link_to '로그아웃', session_path(current_user.id), method: :delete %>
+  <% else %>
+    <%= link_to '회원가입', new_user_path %> | <%= link_to '로그인', new_session_path %>
+  <% end %><hr>
+<%= yield %>
+
+</body>
+</html>

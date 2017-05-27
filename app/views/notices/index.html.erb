@@ -1,0 +1,20 @@
+<h1>공지사항 페이지 </h1>
+
+<!--< %= link_to "Next Page", notices_page_select_path(:page_move => 1), method: :get%>  < %=link_to "Previous Page", notices_page_select_path(:page_move => 0), method: :get %> <br>-->
+<!--이렇게 하려 했으나 실패했음. 왜냐면 이렇게 보내도 이걸 계속 컨트롤러에서 저장하거나 할 수 없고 매번 초기화되어버리기 때문에. -->
+
+
+
+
+Pages:
+
+<% @pages_a.each do |x| %>
+<%= link_to "#{x}", notices_index_path(:page_to => x)%>
+<% end %> 
+<br>
+You're now on page <%= @page_num%> 
+<br><br>
+<% @notices.each do |n| %>
+<%= n.title %>
+<%= link_to "Open on skku.edu", "http://www.skku.edu/eng_home/campus/skk_comm/#{n.content}", method: :get, target: :_blank %> <br> <!-- 대체 왜 link_to 는 되고 button_to 는 안되는 것인가-->
+<% end %>  

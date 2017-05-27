@@ -1,0 +1,25 @@
+<p><%= @post.category.name %></p>
+<h2><%= @post.title %></h2>
+<p><%= simple_format(@post.body) %></p>
+
+<% @post.comments.each do |cmt| %>
+    <%= cmt.body %> | <%= @post.user.nickname %>
+<% end %>
+
+
+
+<hr>
+
+<%= form_for [@post, Comment.new] do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit '제출' %>
+<% end %>
+
+<%= link_to '글쓰기', new_post_path %>
+<% if can? :update, @post %>
+    <%= link_to '수정', edit_post_path(@post) %>
+<% end %>
+<% if can? :delete, @post %>
+    <%= link_to '삭제', @post, method: :delete, data: {confirm: '정말 삭제하시겠습니까?' } %>
+<% end %>
+<%= link_to '목록', posts_path %>

@@ -1,0 +1,25 @@
+<!--검색기능을 구현해보기 위해 포스트에 새로 판 뷰입니다. -->
+
+새로 판 검색창 <br>
+
+카테고리: 
+
+<%= form_tag search_index_posts_path, method: :get do %>
+    <%= select_tag(:category, options_for_select([['제목', "title"], ['내용', "body"],['별명', "nickname"]])) %>
+    <%= text_field_tag :search  %>
+    <%= submit_tag "검색", :name => nil %> 
+    <!--:name => nil 은 대체 뭘까요?-->
+<% end %>
+<br>
+
+<% if @posts != nil %>
+  <% @posts.each do |r| %>
+    <%= r.title %><br>
+    <%= r.body %><br>
+  <% end %>
+<% else %>
+    No Data
+
+<% end %>
+
+<%= link_to '목록', posts_path %>
