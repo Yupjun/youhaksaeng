@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   post 'users/favorites_add'
   post 'users/favorites_delete'
-
+  get 'user/index' => 'users#index'
 
   
  
