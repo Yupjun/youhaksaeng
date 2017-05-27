@@ -4,12 +4,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.string :nickname
-      # t.string :campus
-      t.boolean :campus
+      t.string :campus
       t.string :nationality
-      t.boolean :email_confirmed, default: false
-      t.string :confirm_token
-   
+      #email-validation
 
       t.timestamps null: false
     end

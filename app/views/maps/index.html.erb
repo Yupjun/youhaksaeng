@@ -45,7 +45,7 @@
     </div>
     
     <div style = "background:url('<%= image_path 'skku_map.jpg' %>') no-repeat 0 0" >
-  		<% if @select == '1' %>
+  		<% if @select.nil? || @select == '1' %>
   			<img src=<%= image_path 'map1.png' %> alt="기본맵" width="967" height="447" usemap="#Map" />
   		<% elsif @select == '2' %>
   			<img src=<%= image_path 'map2.png' %> alt="국민은행ATM 맵" width="967" height="447" usemap="#Map" />

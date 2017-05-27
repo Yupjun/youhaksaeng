@@ -7,12 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Inserting category data.."
 [
-    ["Europe"],
-    ["Asia"],
-    ["Africa"],
-    ["North America"],
-    ["South Amercia"],
-    ["Oceania"]
+    ["유럽"],
+    ["아시아"],
+    ["아프리카"],
+    ["북아메리카"],
+    ["남아메리카"],
+    ["오세아니아"]
 ].each do |x|
     Category.create(name: x[0])
 end
@@ -39,15 +39,26 @@ puts "Inserting facility data.."
     Facility.create(name: x[0])     
 end
 
-puts "Inserting search data"
+puts "Inserting building data.."
 [
-    ["title"],
-    ["content"],
-    ["campus"],
-    ["nickname"],
-    ["nationality"]
+    ["Choose the facility you want."],
+    ["ATM(Kookmin Bank)"],
+    ["ATM(Shinhan Bank)"],
+    ["ATM(Woori Bank)"],
+    ["Cafe"],
+    ["Cafeteria"],
+    ["Convenience Store"],
+    ["Copy Room"],
+    ["Girl's Lounge"],
+    ["Lost & Found"],
+    ["Notebook Rental"],
+    ["PC Room"],
+    ["Printer(Black & White)"],
+    ["Printer(Color)"],
+    ["Reading Room"],
+    ["Scanner"]
 ].each do |x|
-    Search.create(search: x[0])
+    Facility.create(name: x[0])     
 end
 
 puts "Insertion completed"

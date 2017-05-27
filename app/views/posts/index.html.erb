@@ -13,7 +13,7 @@
 <% end %> 
 
 <% @posts.each do |post| %>
-    <%= post.id %> | <a href='<%= post_path(post) %>'><%= post.title %></a> | <%= post.user.nickname %> | <%= post.category.name %><br>
+    <a href='<%= post_path(post) %>'><%= post.title %></a> | <%= post.user.nickname %> | <%= post.category.name %><br>
 <% end %>
 
 <%= link_to '글쓰기', new_post_path %>
