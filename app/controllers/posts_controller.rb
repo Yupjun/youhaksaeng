@@ -3,36 +3,29 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    # @posts = Post.search(params[:search])
-    @posts = Post.all
-    # @@meta = params[:search]
-    # if params[:search] == "title"
-    #   @posts = Post.where("title like ?", "%#{params[:post]}%")
-    # elsif params[:search] == "body"
-    #   @posts = Post.where("body like ?", "%#{params[:post]}%")
-    # elsif params[:search] == "campus"
-    #   @posts = Post.where("campus like ?", "%#{params[:post]}%")
-    # elsif params[:search] == "nationality"
-    #   @posts = Post.where("nationality like ?", "%#{params[:post]}%")
-    # elsif
-    #   @posts = Post.where("nickname like ?", "%#{params[:post]}%")
-    # else
-    #   @posts = Post.all
-    # end
-    
-    
+    @posts = Post.search(params[:search], params[:category])
   end
 
   def create
     @post = Post.new(post_params)
-    @post.save
+    @post.user_id = current_user.id
+
     
-    redirect_to @post
+
+    if @post.save
+      redirect_to @post
+    else
+      flash[:notice] = "글자 수"
+      redirect_to @post
+    end
   end
 
   def new
     @post = Post.new
+    @posts = Post.all
     @categories = Category.all
+    @minimum_length = Post.validators_on(:title ).first.options[:minimum]
+    @maximum_length = Post.validators_on(:body ).first.options[:maximum]
   end
 
   def edit
@@ -57,10 +50,6 @@ class PostsController < ApplicationController
     @post.destroy
     
     redirect_to posts_url
-  end
-  
-  def search_index
-    @posts = Post.search(params[:search], params[:category])
   end
 
   private

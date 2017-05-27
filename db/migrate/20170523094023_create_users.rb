@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nationality
       t.boolean :email_confirmed, default: false
       t.string :confirm_token
+   
 
       t.timestamps null: false
     end

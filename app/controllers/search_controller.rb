@@ -4,7 +4,7 @@ class SearchController < ApplicationController
         if params[:search] == nil
             @@meta = nil
         else
-            @@meta = params[:search]
+            @@meta = params[:search] 
         end
         
         # if params[:search] == "title"

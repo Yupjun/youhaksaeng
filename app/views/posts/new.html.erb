@@ -72,7 +72,7 @@
         console.log('true');
         return true;
       }else{
-        category_message.text("카테고리를 선택해주세요!");
+        category_message.text("카테고리를 선택해주세요");
         console.log('false');
         return false;
       }
@@ -87,13 +87,13 @@
       if(title_validation()){
         title_counter.text("");
       }else{
-        title_counter.text("10글자를 채워주세요!");
+        title_counter.text("2글자를 채워주세요");
       }
       title.keyup(function() {
         var current_length = $(this).val().replace(/ /g, '').length
         var left_length = min_length - current_length
         if(title_validation()) {
-          title_counter.text("소중한 강의평가 감사합니다!");
+          title_counter.text("");
         }else{
           title_counter.text(current_length + '/' + min_length + ' ' + left_length + '글자 남았어요!');
         }

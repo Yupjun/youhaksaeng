@@ -6,7 +6,15 @@
     <%= cmt.body %> | <%= @post.user.nickname %>
 <% end %>
 
-
+<% if current_user %>
+    <% if Favorite.exists?(category_id: @post.category.id, user_id: current_user.id) %>
+        <%= button_to '관심카테고리에서제거', users_favorites_delete_path(user_id: current_user.id, category_id: @post.category.id),
+           method: :post, :onClick => 'alert("관심카테고리에서 제거되었습니다!")' %>
+    <% else %>
+        <%= button_to '관심카테고리에다추가',  users_favorites_add_path(user_id: current_user.id, category_id: @post.category.id),
+           method: :post, :onClick => 'alert("관심카테고리에 추가되었습니다!")' %>
+    <% end %>
+<% end %>
 
 <hr>
 

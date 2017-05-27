@@ -1,4 +1,4 @@
-# class Search < ActiveRecord::Base
+class Search < ActiveRecord::Base
 #     def self.search(search,category) 
 #         if search
 #             where("#{category} LIKE ?","%#{search}%") 
@@ -6,4 +6,4 @@
 #             nil
 #         end
 #     end
-# end
+end

@@ -13,10 +13,14 @@ Rails.application.routes.draw do
   root 'posts#index'
   resources :posts do
     resources :comments, shallow: true
-    collection do
-      get 'search_index' #포스트 내의 새로운 액션 경로
-    end
+    # collection do
+    #   get 'search_index' #포스트 내의 새로운 액션 경로
+    # end
   end 
+  
+  post 'users/favorites_add'
+  post 'users/favorites_delete'
+
 
   
  
