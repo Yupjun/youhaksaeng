@@ -1,35 +1,26 @@
-<!--<%= form_for @post do |f| %>-->
-<!--    <%= f.hidden_field :nickname, value: @current_user[:nickname] %>-->
-<!--    <%= f.hidden_field :user_id, value: current_user.id %>-->
-<!--    <%= f.hidden_field :campus, value: @current_user[:campus] %>-->
-<!--    <%= f.hidden_field :nationality, value: @current_user[:nationality] %>-->
-<!--    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name"), {include_blank: "선택해주세요"} %><br>-->
-
-<!--    <%= f.label :title, '제목' %>-->
-
-<!--    <%= f.text_field :title %><br>-->
-<!--    <%= f.label :body, '내용' %>-->
-
-<!--    <%= f.text_area :body %>-->
-<!--    <%= f.submit '제출' %>-->
-<!--<% end %>-->
+<div id= "content">
+    <div id="posts_background">
 
 <div class="form">
-  <%= form_for @post, html: {novalidate: 'novalidate'} do |f| %>
-      <%= f.hidden_field :nickname, value: @current_user[:nickname] %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :campus, value: @current_user[:campus] %>
-      <%= f.hidden_field :nationality, value: @current_user[:nationality] %>
-      <%= f.select :category_id, options_from_collection_for_select((@categories), "id", "name"), {include_blank: '카테고리'} %><br>
-      <span id="category_message"></span><br>
-      <%= f.label :title, '제목' %><br>
-      <%= f.text_field :title, minlength: @minimum_length, size: 20 %><br>
-      <span id="title_counter" data-minimum-length="<%= @minimum_length %>"></span><br>
-      <%= f.label :body, '내용' %><br>
-      <%= f.text_area :body, maxlength: @maximum_length, rows: 5 %><br>
-      <span id="body_counter" data-maximum-length="<%= @maximum_length %>"></span><br>
-      <%= f.submit '제출' %>
-  <% end %>
+  <div class="a1">
+    <%= form_for @post, html: {novalidate: 'novalidate'} do |f| %>
+        <%= f.hidden_field :nickname, value: @current_user[:nickname] %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :campus, value: @current_user[:campus] %>
+        <%= f.hidden_field :nationality, value: @current_user[:nationality] %>
+        <%= f.select :category_id, options_from_collection_for_select((@categories), "id", "name"), {include_blank: 'Category'} %><br>
+        <span id="category_message"></span><br>
+        <%= f.label :title, 'Title' %><br>
+        <%= f.text_field :title, minlength: @minimum_length, size: 20 %><br>
+        <span id="title_counter" data-minimum-length="<%= @minimum_length %>"></span><br>
+        <%= f.label :body, 'Content' %><br>
+        <%= f.text_area :body, maxlength: @maximum_length, rows: 5 %><br>
+        <span id="body_counter" data-maximum-length="<%= @maximum_length %>"></span><br>
+        <div class="submit">
+          <%= f.submit 'Submit' %>
+        </div>
+    <% end %>
+  </div>
 </div>
 <br>
 
@@ -72,7 +63,7 @@
         console.log('true');
         return true;
       }else{
-        category_message.text("카테고리를 선택해주세요");
+        category_message.text("Select the category");
         console.log('false');
         return false;
       }
@@ -87,7 +78,7 @@
       if(title_validation()){
         title_counter.text("");
       }else{
-        title_counter.text("2글자를 채워주세요");
+        title_counter.text("Fill more than 2 letters");
       }
       title.keyup(function() {
         var current_length = $(this).val().replace(/ /g, '').length
@@ -95,9 +86,12 @@
         if(title_validation()) {
           title_counter.text("");
         }else{
-          title_counter.text(current_length + '/' + min_length + ' ' + left_length + '글자 남았어요!');
+          title_counter.text(current_length + '/' + min_length + ' ' + left_length);
         }
       });
     }
   });
 </script>
+
+</div>
+</div>

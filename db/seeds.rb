@@ -7,12 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Inserting category data.."
 [
-    ["유럽"],
-    ["아시아"],
-    ["아프리카"],
-    ["북아메리카"],
-    ["남아메리카"],
-    ["오세아니아"]
+    ["Free"],
+    ["Study"],
+    ["Question"],
+    ["Language Exchange"]
 ].each do |x|
     Category.create(name: x[0])
 end
@@ -39,36 +37,15 @@ puts "Inserting facility data.."
     Facility.create(name: x[0])     
 end
 
-puts "Inserting building data.."
+puts "Inserting search data"
 [
-    ["Main Gate"],
-    ["Yurim Hoegwan"],
-    ["Meongnyundang"],
-    ["Daesungjeon"],
-    ["Bicheondang"],
-    ["Main Gate"],
-    ["International Hall"],
-    ["600th Anniversary Hall"],
-    ["Central Library"],
-    ["Student Center"],
-    ["Faculty Hall"],
-    ["Dasan Hall of Economics"],
-    ["Toegye Hall of Humanities"],
-    ["Hoam Hall"],
-    ["Geumjandi Square"],
-    ["Suseon Hall"],
-    ["Suseon Hall Annex"],
-    ["Yanghyeongwan"],
-    ["International House"],
-    ["Law School"],
-    ["Large Playground"],
-    ["Basketball Court"],
-    ["Oacknyujeong"],
-    ["Kingo House"],
-    ["West Gate"],
-    ["East Gate"]
+    ["title"],
+    ["content"],
+    ["campus"],
+    ["nickname"],
+    ["nationality"]
 ].each do |x|
-    Building.create(name: x[0])     
+    Search.create(search: x[0])
 end
 
 puts "Insertion completed"

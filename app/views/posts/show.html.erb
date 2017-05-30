@@ -1,33 +1,56 @@
-<p><%= @post.category.name %></p>
-<h2><%= @post.title %></h2>
-<p><%= simple_format(@post.body) %></p>
+<div id= "content">
+    <div id="posts_background">
 
-<% @post.comments.each do |cmt| %>
-    <%= cmt.body %> | <%= @post.user.nickname %>
-<% end %>
-
-<% if current_user %>
-    <% if Favorite.exists?(category_id: @post.category.id, user_id: current_user.id) %>
-        <%= button_to '관심카테고리에서제거', users_favorites_delete_path(user_id: current_user.id, category_id: @post.category.id),
-           method: :post, :onClick => 'alert("관심카테고리에서 제거되었습니다!")' %>
-    <% else %>
-        <%= button_to '관심카테고리에다추가',  users_favorites_add_path(user_id: current_user.id, category_id: @post.category.id),
-           method: :post, :onClick => 'alert("관심카테고리에 추가되었습니다!")' %>
+<div class="b1">
+  
+        
+    <div class="administer">
+      <%= link_to 'Post', new_post_path %> 
+     
+          <% if can? :update, @post %>
+            <%= link_to 'Edit', edit_post_path(@post) %>
+          <% end %>
+   
+          <% if can? :delete, @post %>
+            <%= link_to 'Delete', @post, method: :delete, data: {confirm: 'Are you sure you want to delete?' } %>
+          <% end %> 
+      <%= link_to 'List', posts_path %>
+    </div>
+    <p>
+      <div class="y1"><%= @post.category.name %></div>
+    </p>
+    <h2>
+      <div class="x1"><%= @post.title %></div>
+    </h2>
+    <p><div class="aaa"><%= simple_format(@post.body) %></div></p>
+    
+    <hr>
+    
+    <% @post.comments.each do |cmt| %>
+    <div class="eee">
+        <%= @post.user.nickname %>
+    </div>
+        <%= cmt.body %>
     <% end %>
-<% end %>
+    
 
-<hr>
+    
+    <hr>
 
-<%= form_for [@post, Comment.new] do |f| %>
-    <%= f.text_area :body %>
-    <%= f.submit '제출' %>
-<% end %>
+    <%= form_for [@post, Comment.new] do |f| %>
+        <%= f.text_area :body %>
+        <div class="reply">
+          <%= f.submit 'Reply' %>
+        </div>
+    <% end %>
 
-<%= link_to '글쓰기', new_post_path %>
-<% if can? :update, @post %>
-    <%= link_to '수정', edit_post_path(@post) %>
-<% end %>
-<% if can? :delete, @post %>
-    <%= link_to '삭제', @post, method: :delete, data: {confirm: '정말 삭제하시겠습니까?' } %>
-<% end %>
-<%= link_to '목록', posts_path %>
+    
+    
+    
+
+    
+</div>
+
+
+</div>
+</div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @favorites = Favorite.where("user_id = ?", current_user.id)
+   @users = User.paginate(:page => params[:page], :per_page => 5)
     
   end
   
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-    
+  
 
 
   private

@@ -1,0 +1,33 @@
+// Place all the styles related to the usefullinks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#usefullinks_background {
+    background: rgba(253, 255, 226, 0.8);
+    // opacity: 0.8;
+}
+
+.useful_img_size {
+    float: left;
+    width: 40%;
+    max-width: 200px;
+    height: auto;
+    // display: inline-block;
+    vertical-align: middle;
+}
+
+.each_useful {
+    width: 90%;
+    height: 80%;
+    max-height: 200px;
+    display: inline-block;
+    // float: left;
+}
+
+.useful_container {
+    width: 90%;
+    max-width: 300px;
+    max-height: 390px;
+    hegith: 90%
+    // float: left;
+}

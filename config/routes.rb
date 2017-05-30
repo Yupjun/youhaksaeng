@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
+  get 'usefullinks/index'
+
+  get 'contributor/index'
+
+  get 'greetings/index'
+
   get 'sessions/new'
   get 'users/new'
-  resources :users do
-    member do
-      get :confirm_email
-    end
-  end
+  resources :users 
   get 'searches' => 'search#index'
   
   resources :sessions, only: [:new, :create, :destroy]
 
-  root 'posts#index'
+  root 'greetings#index'
   resources :posts do
     resources :comments, shallow: true
     # collection do

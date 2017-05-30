@@ -23,10 +23,11 @@ class SessionsController < ApplicationController
       #   render 'new'
       # end
       session[:user_id] = user.id
-      redirect_to posts_path
+      redirect_to greetings_index_path
+
       
     else 
-      flash[:alert] = '아이디나 비밀번호를 잘못 입력하셨습니다.'
+      flash[:alert] = 'Your E-mail or password is wrong       maybe both ¯\_(ツ)_/¯.'
       render 'new'
     end
   end
@@ -34,7 +35,7 @@ class SessionsController < ApplicationController
     session.delete(:user_id)
     @current_user = nil
     
-    redirect_to posts_path
+    redirect_to greetings_index_path
   end
     
 end

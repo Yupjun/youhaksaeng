@@ -1,20 +1,60 @@
-<h1>공지사항 페이지 </h1>
-
-<!--< %= link_to "Next Page", notices_page_select_path(:page_move => 1), method: :get%>  < %=link_to "Previous Page", notices_page_select_path(:page_move => 0), method: :get %> <br>-->
-<!--이렇게 하려 했으나 실패했음. 왜냐면 이렇게 보내도 이걸 계속 컨트롤러에서 저장하거나 할 수 없고 매번 초기화되어버리기 때문에. -->
-
-
-
-
-Pages:
-
-<% @pages_a.each do |x| %>
-<%= link_to "#{x}", notices_index_path(:page_to => x)%>
-<% end %> 
-<br>
-You're now on page <%= @page_num%> 
-<br><br>
-<% @notices.each do |n| %>
-<%= n.title %>
-<%= link_to "Open on skku.edu", "http://www.skku.edu/eng_home/campus/skk_comm/#{n.content}", method: :get, target: :_blank %> <br> <!-- 대체 왜 link_to 는 되고 button_to 는 안되는 것인가-->
-<% end %>  
+<!doctype html>
+    <html>
+        <head>
+            
+        </head>
+        <body>
+            <div id="content">
+    <div id="notice_background">
+        <div class = "jumbotron" style="padding:0px; margin:0px; background-color: rgba(0,0,0,0);">
+            <div class="container"><h1> School Notice </h1></div>
+        </div>
+        <!--< %= link_to "Next Page", notices_page_select_path(:page_move => 1), method: :get%>  < %=link_to "Previous Page", notices_page_select_path(:page_move => 0), method: :get %> <br>-->
+        <!--이렇게 하려 했으나 실패했음. 왜냐면 이렇게 보내도 이걸 계속 컨트롤러에서 저장하거나 할 수 없고 매번 초기화되어버리기 때문에. -->
+        <!--그냥 a태그 쓰는건 어떄?-->
+        <br><br><br>
+        <div class = "notice_box">
+            Pages
+            <nav aria-label="Page navigation">
+              <ul class="pagination pagination-sm">
+                <!--<li>-->
+                <!--  <a href="#" aria-label="Previous">-->
+                <!--    <span aria-hidden="true">&laquo;</span>-->
+                <!--  </a>-->
+                <!--</li>-->
+                <% @pages_a.each do |x| %>
+                    <li><a href="<%= notices_index_path(:page_to => x)%>"> <%="#{x}"%> </a></li>
+                <% end %> 
+                <!--<li>-->
+                <!--  <a href="#" aria-label="Next">-->
+                <!--    <span aria-hidden="true">&raquo;</span>-->
+                <!--  </a>-->
+                <!--</li>-->
+              </ul>
+            </nav>
+        </div>
+        
+        <br>
+        
+        <div class = "notice_box">
+            <div>
+                You're now on page <%= @page_num%> 
+            </div>
+        </div>
+        
+        <br><br>
+        
+        <div class = "notice_box">
+            <div id = "each_notice">
+                <ul class="list-group">
+                    <% @notices.each do |n| %>
+                      <li class="list-group-item"><%= n.title %> <button type='button' class = "btn btn-default" style = "padding: 2px;"><%= link_to "Open on skku.edu", "http://www.skku.edu/eng_home/campus/skk_comm/#{n.content}", method: :get, target: :_blank %></button></li> <!-- 대체 왜 link_to 는 되고 button_to 는 안되는 것인가-->
+                <% end %>  
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+            
+        </body>
+</DOCTYPE>

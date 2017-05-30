@@ -1,3 +1,105 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#posts_background {
+    background: #e5ecff;
+}
+
+.table1{
+    font-weight: bold;
+    .th1{
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+        width: 500px;
+    }
+    .th2{
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+        width: 50px;
+    }
+    .th3{
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+        width: 500px;
+    }
+    height: 40px;
+    background: #3498db;
+    color: white;
+}
+
+.table2{
+   
+    .th1{
+        text-align: center;
+        padding: 10px;
+    }
+    .th2{
+        text-align: center;
+        padding: 10px;
+    }
+    .th3{
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+.a1{
+    width: 900px;
+    margin: 5% auto;
+}
+
+.b1{
+    width: 900px;
+    margin: 5% auto;
+}
+
+.c1{
+    width: 900px;
+    margin: 5% auto;
+}
+
+.button1{
+    text-align: right;
+    color: black;
+}
+
+.administer{
+    text-align: right;
+}
+
+.reply{
+    text-align: center;
+}
+
+.x1{
+    font-weight: bold;
+}
+
+.y1{
+    
+}
+
+.submit{
+    text-align: center;
+}
+
+.search{
+    margin: auto;
+}
+
+.eee{
+    font-weight: bold;
+}
+
+.pagination{
+    
+  .previous_page { background:#7777ff; color:white }
+  .previous_page.disabled { background: white; color: #777 }
+  .current { background: yellow }
+  .next_page { background: #7777ff; color: white }
+  .next_page.disabled { background: white; color: #777 }
+}

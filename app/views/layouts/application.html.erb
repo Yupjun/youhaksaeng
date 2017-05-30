@@ -5,28 +5,92 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!--<link rel="stylesheet" type="text/css" href="/assets/stylesheets/application.css">-->
+  <!--<link rel="stylesheet" type="text/css" href="/assets/stylesheets/css/bootstrap.css">-->
+  
+  		<meta charset="utf-8" />
+		<meta name="viewport", content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet", href="assets/css/main.css" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </head>
 <body>
-  <div class="topnav" id="myTopnav">
-    <a href="#home">community</a>
-    <a href="../maps/index">map</a>
-    <a href="../notices/index">notice</a>
-    <a href="#about">My profile</a>
-  </div>
+  <!--<div class="topnav" id="myTopnav">-->
+  <!--  <a href="#home">community</a>-->
+  <!--  <a href="../maps/index">map</a>-->
+  <!--  <a href="../notices/index">notice</a>-->
+  <!--  <a href="#about">My profile</a>-->
+  <!--</div>-->
+
+<div id="sidebar"> <!--사이드바 삽입-->
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="<%=root_path%>">SKKUDENT</a></h1>
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><%= link_to 'Community', posts_path %></li>
+							<li><%= link_to 'Maps', maps_index_path %></li>
+							<li><%= link_to 'Notices', notices_index_path %></li>
+							<li><%= link_to 'Useful links', usefullinks_index_path %></li>
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section>
+					   <% if current_user %>
+                         <strong><%= current_user.nickname %></strong> Hello again ^^ <br><br>| <%= link_to 'Logout', session_path(current_user.id), method: :delete %>
+                       <% else %>
+					     <%= form_tag sessions_path do %>
+                           Email : <%= text_field_tag :email, nil , :placeholder => "Johndoe@google.com", style: "color:black;" %>
+                           Password: <%= password_field_tag :password, nil , :placeholder => "********", style: "color:black;"   %><br>
+                            <%= submit_tag 'Submit' %><br>
+                            <%= link_to 'Sign-up', new_user_path %>
+                         <% end %>
+                       <% end %>
+					</section>
+
+				<!-- Text -->
+					<section class="box text-style1">
+						<div class="inner">
+						    <!--Currency Converter widget by FreeCurrencyRates.com -->
+                            <div id='gcw_mainFulsgDET6' class='gcw_mainFulsgDET6'></div>
+                            <script>function reloadFulsgDET6(){ var sc = document.getElementById('scFulsgDET6');if (sc) sc.parentNode.removeChild(sc);sc = document.createElement('script');sc.type = 'text/javascript';sc.charset = 'UTF-8';sc.async = true;sc.id='scFulsgDET6';sc.src = 'https://freecurrencyrates.com/en/widget-vertical?iso=USDJPYEURCNYFRFXUL&df=2&p=FulsgDET6&v=fits&source=fcr&width=200&width_title=0&firstrowvalue=1&thm=A6C9E2,FCFDFD,4297D7,5C9CCC,FFFFFF,C5DBEC,FCFDFD,2E6E9E,000000&title=Currency%20Converter&tzo=-540';var div = document.getElementById('gcw_mainFulsgDET6');div.parentNode.insertBefore(sc, div);} reloadFulsgDET6(); </script>
+<!-- put custom styles here: .gcw_mainFulsgDET6{}, .gcw_headerFulsgDET6{}, .gcw_ratesFulsgDET6{}, .gcw_sourceFulsgDET6{} -->
+<!--End of Currency Converter widget by FreeCurrencyRates.com -->
+						</div>
+					</section>
+
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; SKKUDENT</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<%= link_to 'Contributor', contributor_index_path %>
+					</ul>
+
+			</div>
 
 
 
-  <% if current_user %>
-    <%= current_user.nickname %>님 | <%= link_to '로그아웃', session_path(current_user.id), method: :delete %>
-  <% else %>
-    <%= link_to '회원가입', new_user_path %> | <%= link_to '로그인', new_session_path %>
-  <% end %><hr>
+
+
+
+  <!--<%# if current_user %>-->
+  <!--  <%#= current_user.nickname %>님 | <%#= link_to '로그아웃', session_path(current_user.id), method: :delete %>-->
+  <!--<%# else %>-->
+  <!--  <%#= link_to '회원가입', new_user_path %> | <%#= link_to '로그인', new_session_path %>-->
+  <!--<%# end %><br>-->
 <%= yield %>
 
 </body>
 </html>
-
 
 
 		

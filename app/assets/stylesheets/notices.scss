@@ -1,3 +1,19 @@
 // Place all the styles related to the notices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#notice_background {
+    background: rgba(229, 255, 237, 0.8);
+    // opacity: 0.8;
+}
+
+.notice_box {
+    background: rgba(244, 255, 247, 0.7);
+    width: 80%;
+    max-width: 800px;
+}
+
+.pagination.pagination-sm {
+    padding: 0px ; 
+}

@@ -7,8 +7,11 @@ class Post < ActiveRecord::Base
     validates :body, length: { maximum: 200 }
 
     before_validation :strip_whitespace, only: [:title, :body]
+  
 
 
+
+  
 
 
     def self.search(search,category) #포스트 컨트롤러에 search 매소드를 넣어봤습니다. 

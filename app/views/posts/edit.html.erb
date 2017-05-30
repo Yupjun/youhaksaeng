@@ -1,7 +1,15 @@
-<%= form_for @post do |f| %>
-    <%= f.label :title, '제목' %>
-    <%= f.text_field :title %><br>
-    <%= f.label :body, '내용' %>
-    <%= f.text_area :body %>
-    <%= f.submit '수정'%>
-<% end %>
+<div id= "content">
+    <div id="posts_background">
+
+<div class="c1"  >
+    <%= form_for @post do |f| %>
+        <%= f.label :title, 'Title' %>
+        <%= f.text_field :title %><br>
+        <%= f.label :body, 'Content' %>
+        <%= f.text_area :body %>
+        <%= f.submit 'Submit'%>
+    <% end %>
+</div>      
+
+</div>
+</div>

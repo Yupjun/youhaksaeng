@@ -1,21 +1,21 @@
 class PostsController < ApplicationController
   before_action :authorize, only: [:new, :edit, :update, :destory]
+ 
   load_and_authorize_resource
   
   def index
-    @posts = Post.search(params[:search], params[:category])
+    @posts = Post.search(params[:search], params[:category]).paginate(page: params[:page], per_page: 5)
+  
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
-    
-
     if @post.save
       redirect_to @post
     else
-      flash[:notice] = "글자 수"
+      flash[:notice] = "number of characters"
       redirect_to @post
     end
   end
@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     authorize! :update, @post
+    session[:return_to] ||= request.referer
   end
 
   def update
@@ -65,6 +66,7 @@ class PostsController < ApplicationController
   def search_params
     params.require(:search).permit(:search, :post)
   end
+  
 end
   
 

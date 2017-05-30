@@ -1,7 +1,35 @@
-<style>
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>SKKUDENT</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <style>
+
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+    width: 600px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: #3498db;
+}
+tr:nth-child(even) {
+    background-color: #bdc3c7;
+}
+
 .tooltip {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    top: 0;
+    /*display: inline-block;*/
     border-bottom: 1px dotted black;
 }
 
@@ -27,10 +55,131 @@
     visibility: visible;
     opacity: 1;
 }
+
+
+
+    </style>
+
+<SCRIPT LANGUAGE="JavaScript">
+var contentArray = [];
+var iConArray = [];
+var markers = [];
+var iterator = 0;
+var markerArray = [];
+var map;
+
+// infowindow contents 배열
+ contentArray[0] = "Front Gate";
+ contentArray[1] = "Myeongnyundang";
+ contentArray[2] = "International Hall";
+ contentArray[3] = "600th Anniversary Building";
+ contentArray[4] = "Central Library";
+ contentArray[5] = "Student Union";
+ contentArray[6] = "Faculty Hall";
+ contentArray[7] = "Dasa Hall of Economics";
+ contentArray[8] = "Toegye Hall of Humanities";
+ contentArray[9] = "Hoam Hall";
+ contentArray[10] = "Business Building";
+ contentArray[11] = "Suseon Hall";
+ contentArray[12] = "Suseon Hall Annex";
+ contentArray[13] = "International House";
+ contentArray[14] = "Law Building";
+ contentArray[15] = "Rear Gate";
+
+// marker icon 배열
+ iConArray[0] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[1] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[2] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[3] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[4] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[5] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[6] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[7] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[8] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[9] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[10] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[11] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[12] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[13] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[14] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+ iConArray[15] = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+// 위경도 배열
+/*
+var markerArray = [ new google.maps.LatLng(40.3938,-3.7077)
+, new google.maps.LatLng(40.45038,-3.69803)
+, new google.maps.LatLng(40.45848,-3.69477)
+, new google.maps.LatLng(40.40672,-3.68327)
+, new google.maps.LatLng(40.43672,-3.62093)
+, new google.maps.LatLng(40.46725,-3.67443)
+, new google.maps.LatLng(40.43794,-3.67228)
+, new google.maps.LatLng(40.46212,-3.69166)
+, new google.maps.LatLng(40.41926,-3.70445)
+, new google.maps.LatLng(40.42533,-3.6844)
+];
+*/
+
+markerArray[0] = new google.maps.LatLng(37.584805136542684,126.99704543136);
+markerArray[1] = new google.maps.LatLng(37.586139952041776,126.99573830151371);
+markerArray[2] = new google.maps.LatLng(37.586845608802484,126.99521258854679);
+markerArray[3] = new google.maps.LatLng(37.587372721536,126.99442401909641);
+markerArray[4] = new google.maps.LatLng(37.58835042075534,126.99406996750645);
+markerArray[5] = new google.maps.LatLng(37.58748324470032,126.99338332199864);
+markerArray[6] = new google.maps.LatLng(37.58869048703876,126.99311510109715);
+markerArray[7] = new google.maps.LatLng(37.58903055176839,126.99224606537632);
+markerArray[8] = new google.maps.LatLng(37.58897954215802,126.99162379288487);
+markerArray[9] = new google.maps.LatLng(37.58837379968117,126.99202433608411);
+markerArray[10] = new google.maps.LatLng(37.58859059204832,126.99268415950178);
+markerArray[11] = new google.maps.LatLng(37.58784244317003,126.99096754573225);
+markerArray[12] = new google.maps.LatLng(37.588097494768874,126.99105337642072);
+markerArray[13] = new google.maps.LatLng(37.586056,126.994508);
+markerArray[14] = new google.maps.LatLng(37.58741523046517,126.99057236695103);
+markerArray[15] = new google.maps.LatLng(37.58926647076207,126.99006811165623);
+
+function initialize() {
+	var mapOptions = {
+		zoom: 16,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		center: new google.maps.LatLng(37.58694550681661,126.99395552661576)
+	};
+
+	map = new google.maps.Map(document.getElementById('map'),mapOptions);
+
+	for (var i = 0; i < markerArray.length; i++) {
+		addMarker();
+	}
+}
+
+
+// 마커 추가
+function addMarker() {
+
+	var marker = new google.maps.Marker({
+		position: markerArray[iterator],
+		map: map,
+		draggable: false,
+		icon: iConArray[iterator]
+	});
+	markers.push(marker);
+
+	var infowindow = new google.maps.InfoWindow({
+      content: contentArray[iterator]
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+	});
+	iterator++;
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</SCRIPT>
 </style>
+</head>
 
-
-<div id="contents">
+<body>
+// <div id='content'>
+// <div id='map_background'>
+<div>
 	<div class="forms">
 		<div class="select_form">
         	<%= form_tag maps_index_url, :method => 'get' do %>
@@ -46,11 +195,8 @@
     	</div>
     </div>
     
-    <% if @building.nil? %>
-    	<p>NOTHING SEARCHED</p>
-    <% else %>
-    	<%= @building %>
-    <% end %>
+    
+   
     
     
     <div style = "background:url('<%= image_path 'skku_map.jpg' %>') no-repeat 0 0" >
@@ -359,3 +505,189 @@
 		<% end %>
 	</div>
 </div>
+<h3>Google Maps for navigate </h3>
+
+<div id="map" style="width:780px;height:400px;margin-left:20px;margin-top:20px;"></div>
+<div style="padding:20px;text-align:center;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- source.uhoon.co.kr -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-4169082997566429"
+     data-ad-slot="5725636632"></ins>
+</div>
+<h3>Shop operating time table</h3>
+<table>
+  <tr>
+    <th>Shop</th>
+    <th>Building</th>
+    <th>Weekday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Toegye Hall of Humanities(2F)</td>
+    <td>08:30~22:00</td>
+    <td>08:30~16:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Central Library(1F)</td>
+    <td>09:00~21:00</td>
+    <td>09:00~21:00</td>
+    <td>09:00~21:00</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Business Building(B3)</td>
+    <td>08:30~22:00</td>
+    <td>08:30~16:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Law Building(B2)</td>
+    <td>09:00~20:00</td>
+    <td>09:00~19:00</td>
+    <td>09:00~18:00</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Toegye Hall of Humanities(2F)</td>
+    <td>08:30~22:00</td>
+    <td>08:30~16:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Suseon Hall</td>
+    <td>10:00~17:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Convenience store</td>
+    <td>Student Union(3F)</td>
+    <td>09:00~18:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Toegye Hall of Humanities(1F)</td>
+    <td>08:00~22:00</td>
+    <td>08:00~16:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Central Library(1F)</td>
+    <td>09:00~19:00</td>
+    <td>09:00~18:00</td>
+    <td>09:00~18:00</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Faculty Hall(1F)</td>
+    <td>10:00~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>International Hall(1F)</td>
+    <td>08:00~19:00</td>
+    <td>10:00~17:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Toegye Hall of Humanities</td>
+    <td>08:00~22:00</td>
+    <td>08:00~16:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Central Library(3F)</td>
+    <td>09:00~18:00</td>
+    <td>10:00~17:00</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafe</td>
+    <td>Business Building(B2)</td>
+    <td>08:00~19:30</td>
+    <td>08:30~15:30</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Copy Room</td>
+    <td>Business Building(B2)</td>
+    <td>09:00~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Copy Room</td>
+    <td>Law Building(B2)</td>
+    <td>09:00~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Copy Room</td>
+    <td>Suseon Hall Annex(7F)</td>
+    <td>09:00~18:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Copy Room</td>
+    <td>Central Library(3F)</td>
+    <td>09:00~18:30</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafeteria</td>
+    <td>Faculty Hall(1F)</td>
+    <td>11:30~14:00<br>17:00~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafeteria</td>
+    <td>600th Anniversary Building(6F)</td>
+    <td>11:40~13:30</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafeteria</td>
+    <td>600th Anniversary Building(B1)</td>
+    <td>08:00~09:00<br>11:00~14:30<br>16:30~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafeteria</td>
+    <td>Business Building(B2)</td>
+    <td>08:10~11:00<br>11:00~15:30<br>16:30~20:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+  <tr>
+    <td>Cafeteria</td>
+    <td>Law Building(B2)</td>
+    <td>11:30~14:30<br>15:30~19:00</td>
+    <td>Closed</td>
+    <td>Closed</td>
+  </tr>
+</table>
+<!--</div>-->
+<!--</div>-->
+</body>
+</html>
