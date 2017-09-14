@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'figaro'
 gem 'will_paginate', "~> 3.0.4" 
 gem 'country_select'
 # for develop
